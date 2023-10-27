@@ -1,0 +1,25 @@
+.container {
+    margin: 0 auto;
+    max-width: 1220px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 0;
+}
+
+button {
+    width: 100%;
+    padding: 24px 0;
+    margin-top: 12px;
+}
+
+.cards {
+    margin-top: 24px;
+}
+
+.card {
+    width: 100%;
+    padding: 24px 0;
+    border: 1px solid black;
+}
