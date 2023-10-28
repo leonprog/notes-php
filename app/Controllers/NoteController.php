@@ -3,6 +3,7 @@
 require_once 'app/Controllers/Controller.php';
 require_once 'app/Services/View.php';
 require_once 'app/Models/Note.php';
+require_once 'app/Redirect/Redirect.php';
 
 class NoteController extends Controller
 {
@@ -19,5 +20,7 @@ class NoteController extends Controller
     public function store(array $data) : void
     {
         Note::create($data);
+
+        Redirect::url('/');
     }
 }

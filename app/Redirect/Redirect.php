@@ -2,7 +2,7 @@
 
 class Redirect
 {
-    public function url(string $url)
+    public static function url(string $url)
     {
         header("Location: $url");
         exit();

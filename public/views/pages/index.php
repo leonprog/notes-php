@@ -10,7 +10,7 @@
     <div class="cards">
         <?php foreach ($notes as $note) { ?>
         <div class="card">
-            <?php $note['text'] ?>
+            <?php echo $note['text'] ?>
         </div>
         <?php } ?>
     </div>
