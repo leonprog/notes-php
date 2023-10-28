@@ -9,11 +9,11 @@ class NoteController extends Controller
 {
     public function index() : void
     {
-        $view = new View();
+//        $view = new View();
 
         $notes = Note::get();
 
-        $view->view('index', ['notes' => $notes]);
+        $this->view->view('index', ['notes' => $notes]);
 
     }
 

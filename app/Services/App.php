@@ -1,8 +1,8 @@
 <?php
 
-require_once 'app/Services/DataBaseService.php';
+require_once 'app/Services/DataBase.php';
 
-class AppService
+class App
 {
     public static function start() : void
     {
@@ -12,6 +12,6 @@ class AppService
 
     private static function db()
     {
-        DataBaseService::startDB();
+        DataBase::startDB();
     }
 }

@@ -2,7 +2,7 @@
 
 <div class="container">
     <form method="post" action="/store">
-        <input name="text">
+        <input name="text" required>
 
         <button type="submit">Сохранить</button>
     </form>

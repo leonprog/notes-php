@@ -1,10 +1,10 @@
 <?php
 
-class DataBaseService
+class DataBase
 {
     public static function startDB()
     {
-        return (new DataBaseService)->connection();
+        return (new DataBase)->connection();
     }
 
     private function connection(): PDO|PDOException

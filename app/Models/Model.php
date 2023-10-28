@@ -1,8 +1,9 @@
 <?php
 
-require_once 'app/Services/DataBaseService.php';
+require_once 'app/Services/DataBase.php';
+require_once 'app/Contracts/ModelInterface.php';
 
-class Model extends DataBaseService
+class Model extends DataBase implements ModelInterface
 {
 
     protected string $table = '';

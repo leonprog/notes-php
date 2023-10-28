@@ -1,5 +1,7 @@
+<?php $view->components('head') ?>
 
-<body>
-    
-</body>
-</html>
+<div class="container">
+    <div class="error-page">
+        404
+    </div>
+</div>
