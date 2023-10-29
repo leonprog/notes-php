@@ -3,7 +3,7 @@
 require_once 'app/Controllers/Controller.php';
 require_once 'app/Services/View.php';
 require_once 'app/Models/Note.php';
-require_once 'app/Redirect/Redirect.php';
+require_once 'app/Http/Redirect.php';
 
 class NoteController extends Controller
 {

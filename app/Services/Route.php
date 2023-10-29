@@ -3,37 +3,72 @@
 require_once 'app/Controllers/Controller.php';
 require_once 'app/Services/View.php';
 require_once 'app/Contracts/RouteInterface.php';
+require_once 'app/Http/Request.php';
 
 class Route implements RouteInterface
 {
-    public static function get(string $route, Controller $controller, string $action): void
+    protected Request $request;
+    protected View $view;
+
+    private static array $list = [];
+
+    public function __construct()
     {
-        if (self::isMatch($route)) {
-            $object = new $controller;
-            $object->$action();
-        } else {
-            self::error();
+        $this->request = new Request();
+        $this->view = new View();
+        $this->init();
+    }
+
+    public static function get(string $path, Controller $controller, string $action): void
+    {
+        self::$list[] = [
+            "path" => $path,
+            "controller" => $controller,
+            "action" => $action,
+        ];
+    }
+
+    public static function post(string $path, Controller $controller, string $action): void
+    {
+        self::$list[] = [
+            "path" => $path,
+            "controller" => $controller,
+            "action" => $action,
+        ];
+    }
+
+    public function init(): void
+    {
+        $routes = self::$list;
+        $method = $this->request->getMethod();
+        $uri = $this->request->getUri();
+
+        if (!(in_array($uri, array_column($routes, 'path')))) {
+            $this->error();
+            die();
+        }
+
+        foreach ($routes as $route) {
+            $object = new $route['controller'];
+            $action = $route['action'];
+
+            if ($route['path'] === $uri) {
+
+                if ($method === 'POST') {
+                    $data = $this->request->getPost();
+                    $object->$action($data);
+                }
+
+                if ($method === 'GET') {
+                    $object->$action();
+                }
+
+            }
         }
     }
 
-    public static function post(string $route, Controller $controller, string $action): void
+    private function error(): void
     {
-        if (self::isMatch($route) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            $object = new $controller;
-            $data = $_POST;
-            $object->$action($data);
-        }
-    }
-
-    private static function isMatch(string $route): bool
-    {
-        $uri = $_SERVER['REQUEST_URI'];
-        return $route === $uri;
-    }
-
-    private static function error(): void
-    {
-        $view = new View();
-        $view->view('404');
+        $this->view->view('404');
     }
 }
