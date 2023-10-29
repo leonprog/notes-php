@@ -2,11 +2,17 @@
 
 class DataBase
 {
-    public static function startDB()
+    /**
+     * @return PDO|PDOException
+     */
+    public static function startDB(): PDOException|PDO
     {
         return (new DataBase)->connection();
     }
 
+    /**
+     * @return PDO|PDOException
+     */
     private function connection(): PDO|PDOException
     {
         $config = require "config/db.php";

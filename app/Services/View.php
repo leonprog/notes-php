@@ -1,6 +1,8 @@
 <?php
 
-class View
+require_once 'app/Contracts/ViewInterface.php';
+
+class View implements ViewInterface
 {
     /**
      * @param string $name

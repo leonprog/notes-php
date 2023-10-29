@@ -15,6 +15,10 @@ class Model extends DataBase implements ModelInterface
         self::$pdo = parent::startDB();
     }
 
+    /**
+     * @param array $data
+     * @return int|PDOException
+     */
     public static function create(array $data) : int|PDOException
     {
         $table = (new static())->table;
@@ -37,6 +41,9 @@ class Model extends DataBase implements ModelInterface
         return self::$pdo->lastInsertId();
     }
 
+    /**
+     * @return bool|array
+     */
     public static function get(): bool|array
     {
         $table = (new static())->table;
