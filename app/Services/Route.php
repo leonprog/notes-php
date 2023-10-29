@@ -1,9 +1,9 @@
 <?php
 
-require_once 'app/Controllers/Controller.php';
+require_once 'app/Services/Controller.php';
 require_once 'app/Services/View.php';
 require_once 'app/Contracts/RouteInterface.php';
-require_once 'app/Http/Request.php';
+require_once 'app/Services/Request.php';
 
 class Route implements RouteInterface
 {
@@ -19,6 +19,12 @@ class Route implements RouteInterface
         $this->init();
     }
 
+    /**
+     * @param string $path
+     * @param Controller $controller
+     * @param string $action
+     * @return void
+     */
     public static function get(string $path, Controller $controller, string $action): void
     {
         self::$list[] = [
@@ -28,6 +34,12 @@ class Route implements RouteInterface
         ];
     }
 
+    /**
+     * @param string $path|
+     * @param Controller $controller
+     * @param string $action
+     * @return void
+     */
     public static function post(string $path, Controller $controller, string $action): void
     {
         self::$list[] = [
@@ -37,12 +49,18 @@ class Route implements RouteInterface
         ];
     }
 
+    /**
+     * Метод, который обрабатывает запросы и вызывает контроллеры и их методы
+     *
+     * @return void
+     */
     public function init(): void
     {
         $routes = self::$list;
         $method = $this->request->getMethod();
         $uri = $this->request->getUri();
 
+        // Проверка на существования такого пути
         if (!(in_array($uri, array_column($routes, 'path')))) {
             $this->error();
             die();
@@ -71,4 +89,6 @@ class Route implements RouteInterface
     {
         $this->view->view('404');
     }
+
+
 }

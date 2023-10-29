@@ -9,10 +9,10 @@ class DataBase
 
     private function connection(): PDO|PDOException
     {
-        $config = require_once "config/db.php";
+        $config = require "config/db.php";
 
         try {
-            $pdo =  new PDO("mysql:host=localhost;dbname=notes", 'root', 'root');
+            $pdo =  new PDO("mysql:host={$config['host']};dbname={$config['db_name']}", $config['username'], $config['password']);
             return $pdo;
         } catch(\PDOException $exception) {
             exit($exception->getMessage());

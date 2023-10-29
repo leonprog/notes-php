@@ -2,7 +2,13 @@
 
 class View
 {
-    public function view(string $name, array $data = [])
+    /**
+     * @param string $name
+     * @param array $data
+     * @throws Exception
+     * @return mixed
+     */
+    public function view(string $name, array $data = []): mixed
     {
         $path = "public/views/pages/$name.php";
 
@@ -10,6 +16,7 @@ class View
             throw new \Exception("Not found page");
         }
 
+        // Здесь передаем view и data на страницу
         extract([
             'view' => $this,
             ...$data
@@ -18,7 +25,11 @@ class View
         return require_once $path;
     }
 
-    public function components(string $name)
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function components(string $name) : mixed
     {
         return require_once "public/views/components/$name.php";
     }

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app/Models/Model.php';
+require_once 'app/Services/Model.php';
 
 class Note extends Model
 {

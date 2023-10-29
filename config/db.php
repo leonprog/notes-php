@@ -2,7 +2,7 @@
 
 return [
     'host' => 'localhost',
-    'db_name' => 'notes',
+    'db_name' => 'enot',
     'username' => 'root',
     'password' => 'root',
 ];
